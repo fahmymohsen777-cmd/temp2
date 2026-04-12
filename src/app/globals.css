@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* ─────────────────────────────────────────────
+   Design Tokens - Matched to Video Colors
+───────────────────────────────────────────── */
+:root {
+  --color-bg:      #efece6; /* Cream white background */
+  --color-gold:    #382216; /* Dark brown representing the primary text color */
+  --color-card:    #e8e4db; /* Slightly darker cream for cards */
+  --color-white:   #2c1A10; /* Very dark brown to substitute "white" text in dark theme */
+  
+  --font-arabic:        "Noto Naskh Arabic", serif;
+  --font-arabic-script: "Aref Ruqaa", serif;
+  --font-serif:         "Playfair Display", "Noto Naskh Arabic", serif;
+  --font-script:        "Great Vibes", cursive;
+}
+
+/* ─────────────────────────────────────────────
+   Base Reset
+───────────────────────────────────────────── */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-white);
+  font-family: var(--font-arabic);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* ─────────────────────────────────────────────
+   Utility – font classes
+───────────────────────────────────────────── */
+.font-arabic { font-family: var(--font-arabic); }
+.font-arabic-script { font-family: var(--font-arabic-script); }
+.font-serif { font-family: var(--font-serif); }
+.font-script { font-family: var(--font-script); }
+
+/* ─────────────────────────────────────────────
+   Custom scrollbar
+───────────────────────────────────────────── */
+::-webkit-scrollbar         { width: 6px; }
+::-webkit-scrollbar-track   { background: var(--color-bg); }
+::-webkit-scrollbar-thumb   { background: var(--color-gold); border-radius: 3px; }
