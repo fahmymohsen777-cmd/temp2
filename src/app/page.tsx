@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import WeddingInvitation from "@/components/WeddingInvitation";
 import type { InvitationData } from "@/types/invitation";
@@ -39,17 +39,17 @@ const sampleData: InvitationData = {
 type AppState = "ready" | "playing" | "done";
 
 export default function Home() {
-  const [appState, setAppState] = useState<AppState>("ready");
+  const [appState, setAppState] = useState<AppState>("playing");
 
-  const handleStart = () => {
-    if (appState !== "ready") return;
-    setAppState("playing");
-    
+  useEffect(() => {
     // Video GIF duration is exactly 8 seconds
-    setTimeout(() => {
+    // We start automatically on mount
+    const timer = setTimeout(() => {
       setAppState("done");
     }, 8500);
-  };
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <>
@@ -63,40 +63,10 @@ export default function Home() {
           >
             <div className="relative w-full max-w-[430px] h-full sm:h-[90vh] sm:rounded-2xl sm:shadow-2xl overflow-hidden bg-[#efece6] flex items-center justify-center">
               <img 
-                src={appState === "playing" ? `/intro.gif?t=${Date.now()}` : "/intro_poster.png"} 
+                src={"/intro.gif"} 
                 alt="Intro Video"
                 className="w-full h-full object-cover"
               />
-              
-              <AnimatePresence>
-                {appState === "ready" && (
-                  <motion.div 
-                    className="absolute inset-0 bg-black/20 flex flex-col items-center justify-center cursor-pointer backdrop-blur-[2px]"
-                    onClick={handleStart}
-                    exit={{ opacity: 0 }}
-                  >
-                     <motion.div 
-                        initial={{ scale: 0.9, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ duration: 0.8 }}
-                        className="w-20 h-20 rounded-full bg-[#382216]/80 flex items-center justify-center shadow-2xl border-2 border-[#efece6]/30"
-                     >
-                       <svg width="28" height="28" viewBox="0 0 24 24" fill="#efece6" className="ml-2">
-                         <path d="M8 5v14l11-7z" />
-                       </svg>
-                     </motion.div>
-                     <motion.p 
-                        className="mt-6 text-[#382216] font-semibold text-lg bg-[#efece6]/90 px-6 py-2 rounded-full shadow-lg"
-                        style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ delay: 0.3 }}
-                     >
-                       اضغط لبدء الدعوة
-                     </motion.p>
-                  </motion.div>
-                )}
-              </AnimatePresence>
             </div>
           </motion.div>
         ) : (

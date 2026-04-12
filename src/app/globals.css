@@ -7,7 +7,7 @@
   --color-bg:      #efece6; /* Cream white background */
   --color-gold:    #382216; /* Dark brown representing the primary text color */
   --color-card:    #e8e4db; /* Slightly darker cream for cards */
-  --color-white:   #2c1A10; /* Very dark brown to substitute "white" text in dark theme */
+  --color-white:   #ffffff; /* Fixed to pure white to prevent tailwind bg-white from breaking */
   
   --font-arabic:        "Noto Naskh Arabic", serif;
   --font-arabic-script: "Aref Ruqaa", serif;
