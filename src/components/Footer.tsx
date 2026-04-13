@@ -33,7 +33,7 @@ export default function Footer({ groomName, brideName }: FooterProps) {
           className="text-[#382216] text-[2.2rem] leading-normal"
           style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400, paddingBottom: "32px", marginBottom: "16px" }}
         >
-          نتمنى نشوفكم معانا 🌹
+          نتمنى نشوفكم معانا
         </p>
 
         {/* Names */}

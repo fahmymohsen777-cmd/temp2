@@ -48,6 +48,7 @@ body {
 /* ─────────────────────────────────────────────
    Custom scrollbar
 ───────────────────────────────────────────── */
-::-webkit-scrollbar         { width: 6px; }
-::-webkit-scrollbar-track   { background: var(--color-bg); }
-::-webkit-scrollbar-thumb   { background: var(--color-gold); border-radius: 3px; }
+::-webkit-scrollbar         { width: 4px; }
+::-webkit-scrollbar-track   { background: transparent; }
+::-webkit-scrollbar-thumb   { background: rgba(56, 34, 22, 0.15); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(56, 34, 22, 0.3); }
