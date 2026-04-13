@@ -122,14 +122,10 @@ export default function BuilderPage() {
             <div className="space-y-6">
               <div className="p-4 border border-dashed border-[#382216]/20 rounded-xl bg-gray-50">
                  <h3 className="font-bold text-gray-800 mb-4">فيديو البداية واسكرين شوت (Intro)</h3>
-                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                 <div className="grid grid-cols-1 gap-4">
                     <div>
                       <label className="block text-xs font-semibold mb-1">الفيديو المتحرك (intro.gif)</label>
                       <input type="file" name="introGif" accept="image/gif" className="text-sm w-full" />
-                    </div>
-                    <div>
-                      <label className="block text-xs font-semibold mb-1">آخر لقطة في الفيديو (intro_last_frame.png)</label>
-                      <input type="file" name="introLastFrame" accept="image/png, image/jpeg" className="text-sm w-full" />
                     </div>
                  </div>
               </div>

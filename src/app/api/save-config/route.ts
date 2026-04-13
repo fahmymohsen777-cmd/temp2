@@ -36,10 +36,8 @@ export async function POST(req: NextRequest) {
       }
     };
 
-    // Save Intro GIF and First Frame (Poster) if provided
+    // Save Intro GIF if provided
     await saveFile("introGif", "intro.gif");
-    await saveFile("introPoster", "intro_poster.png");
-    await saveFile("introLastFrame", "intro_last_frame.png");
     
     // Dynamic Gallery Images Logic
     const galleryImages: string[] = [];
