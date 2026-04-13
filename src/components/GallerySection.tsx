@@ -13,7 +13,7 @@ export default function GallerySection({ images }: GallerySectionProps) {
   return (
     <section id="gallery" className="bg-[#efece6] py-14 px-5" dir="rtl">
       {/* Header */}
-      <ScrollReveal direction="fade" className="text-center mb-10">
+      <ScrollReveal direction="fade" className="text-center mb-12">
         <p
           className="text-[#382216]/50 tracking-[0.25em] text-[10px] uppercase mb-3"
           style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
@@ -21,7 +21,7 @@ export default function GallerySection({ images }: GallerySectionProps) {
           ذكرياتنا
         </p>
         <h2
-          className="text-[#382216] text-3xl mb-4"
+          className="text-[#382216] text-3xl mb-8 leading-normal"
           style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400 }}
         >
           لحظات من قلب الحكاية

@@ -19,7 +19,7 @@ export default function IntroCopy({ groomName, brideName, message }: IntroCopyPr
   return (
     <section id="intro" className="bg-transparent py-12 px-5" dir="rtl">
       <ScrollReveal direction="up">
-        <div className="bg-white rounded-2xl px-8 py-10 relative overflow-hidden shadow-[0_16px_40px_rgba(56,34,22,0.06)] text-center border border-[#e8e4db]">
+        <div className="bg-white rounded-2xl px-8 py-10 mb-8 relative overflow-hidden shadow-[0_16px_40px_rgba(56,34,22,0.06)] text-center border border-[#e8e4db]">
           {/* Corner decorations */}
           <span className="absolute top-4 right-4 w-5 h-5 border-t border-r border-[#382216]/20 rounded-tr-sm" />
           <span className="absolute top-4 left-4 w-5 h-5 border-t border-l border-[#382216]/20 rounded-tl-sm" />
@@ -50,7 +50,7 @@ export default function IntroCopy({ groomName, brideName, message }: IntroCopyPr
           <ScrollReveal direction="up" delay={0.2}>
             {message ? (
               <p
-                className="text-[#382216]/80 text-[0.97rem] leading-[2.1] whitespace-pre-line"
+                className="text-[#382216]/80 text-[0.97rem] leading-[1.8] whitespace-pre-line"
                 style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
               >
                 {message}

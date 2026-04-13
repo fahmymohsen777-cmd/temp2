@@ -14,7 +14,7 @@ export default function MapSection({ locationUrl, venueName, venueAddress }: Map
   return (
     <section id="location" className="bg-[#e8e4db] py-14 px-5" dir="rtl">
       {/* Header */}
-      <ScrollReveal direction="up" className="text-center mb-8">
+      <ScrollReveal direction="up" className="text-center mb-10">
         <p
           className="text-[#382216]/50 tracking-[0.25em] text-[10px] uppercase mb-3"
           style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
@@ -22,7 +22,7 @@ export default function MapSection({ locationUrl, venueName, venueAddress }: Map
           مكان الحفل
         </p>
         <h2
-          className="text-[#382216] text-3xl mb-2"
+          className="text-[#382216] text-3xl mb-2 leading-normal"
           style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400 }}
         >
           {venueName}
@@ -33,7 +33,7 @@ export default function MapSection({ locationUrl, venueName, venueAddress }: Map
         >
           {venueAddress}
         </p>
-        <div className="w-10 h-px bg-[#382216]/15 mx-auto mt-5" />
+        <div className="w-10 h-px bg-[#382216]/15 mx-auto mt-6 mb-4" />
       </ScrollReveal>
 
       {/* Map embed */}
