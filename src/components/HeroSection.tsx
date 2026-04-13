@@ -154,7 +154,7 @@ export default function HeroSection({
 
       {/* ── Scroll down ── */}
       <motion.div
-        className="relative z-10 flex flex-col items-center gap-2 pt-14 pb-12"
+        className="relative z-10 flex flex-col items-center gap-2 pt-14 pb-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}

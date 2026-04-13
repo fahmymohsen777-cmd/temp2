@@ -57,7 +57,7 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
           العد التنازلي
         </p>
         <h2
-          className="text-[#382216] text-3xl mb-10 leading-normal"
+          className="text-[#382216] text-3xl mb-16 leading-normal"
           style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400 }}
         >
           باقي على الفرح
