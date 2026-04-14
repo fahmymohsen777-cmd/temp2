@@ -1,18 +1,28 @@
 @import "tailwindcss";
 
 /* ─────────────────────────────────────────────
-   Design Tokens - Matched to Video Colors
+   Design Tokens — Matched to template3.tilda.ws
+   EXACT hex color codes extracted from source
 ───────────────────────────────────────────── */
 :root {
-  --color-bg:      #efece6; /* Cream white background */
-  --color-gold:    #382216; /* Dark brown representing the primary text color */
-  --color-card:    #e8e4db; /* Slightly darker cream for cards */
-  --color-white:   #ffffff; /* Fixed to pure white to prevent tailwind bg-white from breaking */
-  
-  --font-arabic:        "Noto Naskh Arabic", serif;
+  /* ── Backgrounds ── */
+  --color-bg:         #f2efe7; /* Main page background — warm parchment */
+  --color-bg-alt:     #f0efec; /* Secondary section background */
+  --color-bg-card:    #ffffff; /* Card / timer block background */
+
+  /* ── Text ── */
+  --color-text:       #4a4a4a; /* Primary text — soft charcoal */
+  --color-text-dark:  #2b2b2b; /* Stronger text (date, place labels) */
+  --color-text-mid:   #2d292a; /* Medium dark text */
+
+  /* ── Borders / Dividers ── */
+  --color-border:     #949494; /* Card arch border colour */
+  --color-divider:    #959595; /* Horizontal divider lines */
+
+  /* ── Fonts ── */
   --font-arabic-script: "Aref Ruqaa", serif;
-  --font-serif:         "Playfair Display", "Noto Naskh Arabic", serif;
-  --font-script:        "Great Vibes", cursive;
+  --font-arabic:        "Noto Naskh Arabic", serif;
+  --font-serif:         "Cormorant Garamond", "Playfair Display", Georgia, serif;
 }
 
 /* ─────────────────────────────────────────────
@@ -30,25 +40,53 @@ html {
 
 body {
   background-color: var(--color-bg);
-  color: var(--color-white);
+  color: var(--color-text);
   font-family: var(--font-arabic);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* NOTE: Never use overflow-hidden here — use overflow-x-hidden only */
   overflow-x: hidden;
 }
 
 /* ─────────────────────────────────────────────
-   Utility – font classes
+   Utility — font classes
 ───────────────────────────────────────────── */
-.font-arabic { font-family: var(--font-arabic); }
 .font-arabic-script { font-family: var(--font-arabic-script); }
-.font-serif { font-family: var(--font-serif); }
-.font-script { font-family: var(--font-script); }
+.font-arabic        { font-family: var(--font-arabic); }
+.font-serif         { font-family: var(--font-serif); }
 
-/* ─────────────────────────────────────────────
-   Custom scrollbar
-───────────────────────────────────────────── */
+/*
+  CRITICAL Arabic Calligraphy Fix:
+  Aref Ruqaa descenders drop below Tailwind bounding box.
+  Apply this class to any Arabic calligraphy heading.
+*/
+.arabic-heading {
+  font-family: var(--font-arabic-script);
+  line-height: 1.55;         /* leading-normal */
+  padding-bottom: 24px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+/* Timeline vertical line decoration */
+.timeline-line {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background-color: var(--color-divider);
+  transform: translateX(-50%);
+}
+
+/* Arch photo shape — top-rounded pill */
+.arch-photo {
+  border-radius: 999px 999px 0 0;
+  overflow: hidden;
+}
+
+/* Custom scrollbar */
 ::-webkit-scrollbar         { width: 4px; }
 ::-webkit-scrollbar-track   { background: transparent; }
-::-webkit-scrollbar-thumb   { background: rgba(56, 34, 22, 0.15); border-radius: 4px; }
-::-webkit-scrollbar-thumb:hover { background: rgba(56, 34, 22, 0.3); }
+::-webkit-scrollbar-thumb   { background: rgba(74, 74, 74, 0.2); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(74, 74, 74, 0.35); }

@@ -11,14 +11,16 @@ interface ScheduleSectionProps {
 export default function ScheduleSection({ schedule, date }: ScheduleSectionProps) {
   const d = new Date(date);
 
-  const arabicDays = ["الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت"];
+  const arabicDays = [
+    "الأحد","الاثنين","الثلاثاء","الأربعاء","الخميس","الجمعة","السبت",
+  ];
   const arabicMonths = [
     "يناير","فبراير","مارس","أبريل","مايو","يونيو",
     "يوليو","أغسطس","سبتمبر","أكتوبر","نوفمبر","ديسمبر",
   ];
 
   const toArabicNumerals = (n: number) =>
-    String(n).replace(/\d/g, (d) => "٠١٢٣٤٥٦٧٨٩"[parseInt(d)]);
+    String(n).replace(/\d/g, (digit) => "٠١٢٣٤٥٦٧٨٩"[parseInt(digit)]);
 
   const dayName   = arabicDays[d.getDay()];
   const dayNum    = toArabicNumerals(d.getDate());
@@ -27,72 +29,227 @@ export default function ScheduleSection({ schedule, date }: ScheduleSectionProps
   const formattedDate = `${dayName}، ${dayNum} ${monthName} ${year}م`;
 
   return (
-    <section id="schedule" className="bg-[#292f38] py-12 px-5" dir="rtl">
-      {/* Header */}
-      <ScrollReveal direction="up" className="text-center mb-10">
-        <p
-          className="text-[#e2cd96]/55 tracking-[0.25em] text-[0.62rem] uppercase mb-3"
-          style={{ fontFamily: "'Cormorant Garamond', serif", fontStyle: "italic" }}
-        >
-          برنامج الحفل
-        </p>
-        <h2
-          className="text-[#e2cd96] text-2xl font-light mb-2"
-          style={{ fontFamily: "'Noto Naskh Arabic', serif", fontWeight: 500 }}
-        >
-          ترتيب السهرة
-        </h2>
-        <p className="text-white/35 text-xs tracking-wide" style={{ fontFamily: "'Noto Naskh Arabic', serif" }}>
-          {formattedDate}
-        </p>
-        <div className="w-12 h-px bg-[#e2cd96]/30 mx-auto mt-5" />
+    <section
+      id="schedule"
+      dir="rtl"
+      style={{
+        backgroundColor: "#f2efe7",
+        paddingTop: 60,
+        paddingBottom: 60,
+        paddingLeft: 20,
+        paddingRight: 20,
+      }}
+    >
+      {/* ── Header ── */}
+      <ScrollReveal direction="up" className="text-center">
+        <div style={{ textAlign: "center", marginBottom: 48 }}>
+          {/* Full-width divider line above — matches Tilda layout */}
+          <div
+            style={{
+              width: "100%",
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.3,
+              marginBottom: 24,
+            }}
+          />
+
+          <p
+            style={{
+              color: "#4a4a4a",
+              fontSize: 11,
+              fontFamily: "'Cormorant Garamond', serif",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              opacity: 0.5,
+              marginBottom: 10,
+            }}
+          >
+            EVENT TIMELINE
+          </p>
+
+          {/*
+            Arabic heading — CRITICAL descender fix applied.
+            lineHeight ≥ 1.55, paddingBottom: 24, marginBottom: 16.
+          */}
+          <h2
+            style={{
+              fontFamily: "'Aref Ruqaa', serif",
+              fontSize: "clamp(1.7rem, 7vw, 2.2rem)",
+              fontWeight: 400,
+              color: "#4a4a4a",
+              lineHeight: 1.55,
+              paddingBottom: 24,
+              marginBottom: 16,
+            }}
+          >
+            ترتيب السهرة
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "'Noto Naskh Arabic', serif",
+              fontSize: 12,
+              color: "#4a4a4a",
+              opacity: 0.45,
+              marginBottom: 16,
+            }}
+          >
+            {formattedDate}
+          </p>
+
+          <div
+            style={{
+              width: 80,
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.3,
+              margin: "0 auto",
+            }}
+          />
+        </div>
       </ScrollReveal>
 
-      {/* Vertical timeline */}
-      <div className="relative">
-        {/* Line — on the right for RTL */}
-        <div className="absolute right-4 top-0 bottom-0 w-px bg-[#e2cd96]/20" />
+      {/* ── Vertical Timeline ── */}
+      <div style={{ position: "relative" }}>
+        {/*
+          The center vertical line — matching Tilda's thin stroke="#959595"
+          Runs through the entire timeline.
+        */}
+        <div
+          style={{
+            position: "absolute",
+            top: 0,
+            bottom: 0,
+            right: "50%",
+            transform: "translateX(50%)",
+            width: 1,
+            backgroundColor: "#959595",
+            opacity: 0.3,
+          }}
+        />
 
-        <div className="space-y-0">
-          {schedule.map((item, idx) => (
-            <ScrollReveal key={`${item.time}-${idx}`} direction="left" delay={idx * 0.1}>
-              <div className="relative flex gap-5 pb-8 last:pb-0 flex-row-reverse">
-                {/* Dot — on the right */}
-                <div className="relative z-10 flex-shrink-0 w-8 flex items-start justify-center pt-1">
-                  <div className="w-2.5 h-2.5 rounded-full bg-[#e2cd96] ring-2 ring-[#292f38] shadow-[0_0_8px_rgba(226,205,150,0.6)]" />
-                </div>
+        <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
+          {schedule.map((item, idx) => {
+            const isLeft = idx % 2 === 0; // alternate sides
 
-                {/* Card */}
-                <div className="flex-1 bg-white/5 border border-[#e2cd96]/10 rounded-xl px-4 py-4 hover:border-[#e2cd96]/25 transition-colors duration-300">
-                  <div className="flex items-center gap-2 mb-1 flex-row-reverse justify-end">
-                    {item.icon && <span className="text-sm">{item.icon}</span>}
-                    <span
-                      className="text-[#e2cd96] text-sm"
-                      style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
+            return (
+              <ScrollReveal
+                key={`${item.time}-${idx}`}
+                direction={isLeft ? "right" : "left"}
+                delay={idx * 0.1}
+              >
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "flex-start",
+                    paddingBottom: 40,
+                    gap: 0,
+                    flexDirection: isLeft ? "row" : "row-reverse",
+                  }}
+                >
+                  {/* Content block — left or right */}
+                  <div
+                    style={{
+                      flex: 1,
+                      paddingLeft: isLeft ? 0 : 20,
+                      paddingRight: isLeft ? 20 : 0,
+                      textAlign: isLeft ? "right" : "left",
+                    }}
+                  >
+                    {/* Time — Cormorant Garamond serif matching Tilda number/time style */}
+                    <p
+                      style={{
+                        fontFamily: "'Cormorant Garamond', serif",
+                        fontSize: 19,
+                        fontWeight: 500,
+                        color: "#4a4a4a",
+                        lineHeight: 1.55,
+                        marginBottom: 2,
+                      }}
                     >
                       {item.time}
-                    </span>
-                  </div>
-                  <h3
-                    className="text-white text-base font-normal mb-1 text-right"
-                    style={{ fontFamily: "'Noto Naskh Arabic', serif", fontWeight: 500 }}
-                  >
-                    {item.title}
-                  </h3>
-                  {item.description && (
-                    <p
-                      className="text-white/40 text-xs leading-relaxed text-right"
-                      style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
-                    >
-                      {item.description}
                     </p>
-                  )}
+
+                    {/* Title */}
+                    <p
+                      style={{
+                        fontFamily: "'Noto Naskh Arabic', serif",
+                        fontSize: 15,
+                        fontWeight: 600,
+                        color: "#4a4a4a",
+                        lineHeight: 1.5,
+                        marginBottom: 4,
+                      }}
+                    >
+                      {item.icon && (
+                        <span style={{ marginLeft: 6, marginRight: 6 }}>
+                          {item.icon}
+                        </span>
+                      )}
+                      {item.title}
+                    </p>
+
+                    {/* Description */}
+                    {item.description && (
+                      <p
+                        style={{
+                          fontFamily: "'Noto Naskh Arabic', serif",
+                          fontSize: 12,
+                          color: "#4a4a4a",
+                          opacity: 0.55,
+                          lineHeight: 1.7,
+                        }}
+                      >
+                        {item.description}
+                      </p>
+                    )}
+                  </div>
+
+                  {/* Center dot — on the vertical line */}
+                  <div
+                    style={{
+                      flexShrink: 0,
+                      display: "flex",
+                      alignItems: "flex-start",
+                      justifyContent: "center",
+                      width: 20,
+                      paddingTop: 6,
+                    }}
+                  >
+                    <div
+                      style={{
+                        width: 10,
+                        height: 10,
+                        borderRadius: "50%",
+                        backgroundColor: "#4a4a4a",
+                        opacity: 0.4,
+                        border: "2px solid #f2efe7",
+                        outline: "1.5px solid rgba(149, 149, 149, 0.5)",
+                        outlineOffset: 0,
+                      }}
+                    />
+                  </div>
+
+                  {/* Empty spacer on opposite side */}
+                  <div style={{ flex: 1 }} />
                 </div>
-              </div>
-            </ScrollReveal>
-          ))}
+              </ScrollReveal>
+            );
+          })}
         </div>
       </div>
+
+      {/* Bottom divider */}
+      <div
+        style={{
+          width: "100%",
+          height: 1,
+          backgroundColor: "#959595",
+          opacity: 0.3,
+          marginTop: 8,
+        }}
+      />
     </section>
   );
 }

@@ -9,64 +9,171 @@ interface IntroCopyProps {
 }
 
 export default function IntroCopy({ groomName, brideName, message }: IntroCopyProps) {
-  const lines = [
+  const defaultLines = [
     "يسعدنا ويشرّفنا أن ندعوكم لحضور حفل زفاف",
     `${groomName} و ${brideName}`,
-    "نتمنى أن تشاركونا أجمل لحظات العمر وأسعد أيامه",
+    "نتمنى أن تشاركونا أجمل لحظات العمر",
     "فبوجودكم يكتمل فرحنا ويعلو سرورنا",
   ];
 
   return (
-    <section id="intro" className="bg-transparent py-12 px-5" dir="rtl">
+    <section
+      id="intro"
+      dir="rtl"
+      style={{
+        backgroundColor: "#f0efec",
+        paddingTop: 56,
+        paddingBottom: 56,
+        paddingLeft: 20,
+        paddingRight: 20,
+      }}
+    >
       <ScrollReveal direction="up">
-        <div className="bg-white rounded-2xl px-8 py-10 mb-8 relative overflow-hidden shadow-[0_16px_40px_rgba(56,34,22,0.06)] text-center border border-[#e8e4db]">
-          {/* Corner decorations */}
-          <span className="absolute top-4 right-4 w-5 h-5 border-t border-r border-[#382216]/20 rounded-tr-sm" />
-          <span className="absolute top-4 left-4 w-5 h-5 border-t border-l border-[#382216]/20 rounded-tl-sm" />
-          <span className="absolute bottom-4 right-4 w-5 h-5 border-b border-r border-[#382216]/20 rounded-br-sm" />
-          <span className="absolute bottom-4 left-4 w-5 h-5 border-b border-l border-[#382216]/20 rounded-bl-sm" />
+        {/* ── Section heading ── */}
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <p
+            style={{
+              color: "#4a4a4a",
+              fontSize: 11,
+              fontFamily: "'Cormorant Garamond', serif",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              opacity: 0.5,
+              marginBottom: 8,
+            }}
+          >
+            DEAR FAMILY AND FRIENDS
+          </p>
 
-          {/* Top ornament */}
-          <div className="flex items-center justify-center gap-3 mb-6">
-            <div className="h-px w-10 bg-[#382216]/15" />
-            <span style={{ color: "#382216", fontSize: 16, opacity: 0.8 }}>❧</span>
-            <div className="h-px w-10 bg-[#382216]/15" />
-          </div>
+          {/* Thin divider matching Tilda */}
+          <div
+            style={{
+              width: 120,
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.3,
+              margin: "12px auto",
+            }}
+          />
+        </div>
 
-          {/* Bismillah */}
+        {/* ── Message card ── */}
+        <div
+          style={{
+            backgroundColor: "#ffffff",
+            borderRadius: 20,
+            padding: "36px 28px",
+            boxShadow: "0 8px 30px rgba(74, 74, 74, 0.07)",
+            border: "1px solid rgba(149, 149, 149, 0.2)",
+            textAlign: "center",
+            position: "relative",
+          }}
+        >
+          {/* Corner brackets — elegant touch */}
+          <span
+            style={{
+              position: "absolute",
+              top: 14,
+              right: 14,
+              width: 18,
+              height: 18,
+              borderTop: "1.5px solid rgba(74, 74, 74, 0.2)",
+              borderRight: "1.5px solid rgba(74, 74, 74, 0.2)",
+            }}
+          />
+          <span
+            style={{
+              position: "absolute",
+              top: 14,
+              left: 14,
+              width: 18,
+              height: 18,
+              borderTop: "1.5px solid rgba(74, 74, 74, 0.2)",
+              borderLeft: "1.5px solid rgba(74, 74, 74, 0.2)",
+            }}
+          />
+          <span
+            style={{
+              position: "absolute",
+              bottom: 14,
+              right: 14,
+              width: 18,
+              height: 18,
+              borderBottom: "1.5px solid rgba(74, 74, 74, 0.2)",
+              borderRight: "1.5px solid rgba(74, 74, 74, 0.2)",
+            }}
+          />
+          <span
+            style={{
+              position: "absolute",
+              bottom: 14,
+              left: 14,
+              width: 18,
+              height: 18,
+              borderBottom: "1.5px solid rgba(74, 74, 74, 0.2)",
+              borderLeft: "1.5px solid rgba(74, 74, 74, 0.2)",
+            }}
+          />
+
+          {/* Bismillah in Aref Ruqaa — with descender fix */}
           <ScrollReveal direction="fade" delay={0.1}>
             <p
-              className="text-[#382216] text-lg mb-5"
-              style={{ fontFamily: "'Aref Ruqaa', serif", fontSize: "1.3rem" }} // Swapped to cursive calligraphy
+              style={{
+                fontFamily: "'Aref Ruqaa', serif",
+                fontSize: "1.3rem",
+                color: "#4a4a4a",
+                lineHeight: 1.55,
+                /* CRITICAL Arabic descender fix */
+                paddingBottom: 24,
+                marginBottom: 8,
+              }}
             >
               بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيمِ
             </p>
           </ScrollReveal>
 
-          {/* Divider */}
-          <div className="w-10 h-px bg-[#382216]/10 mx-auto mb-6" />
+          <div
+            style={{
+              width: 40,
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.25,
+              margin: "0 auto 20px",
+            }}
+          />
 
-          {/* Message lines */}
+          {/* Message text */}
           <ScrollReveal direction="up" delay={0.2}>
             {message ? (
               <p
-                className="text-[#382216]/80 text-[0.97rem] leading-[1.8] whitespace-pre-line"
-                style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
+                style={{
+                  fontFamily: "'Noto Naskh Arabic', serif",
+                  fontSize: "0.97rem",
+                  lineHeight: 2.0,
+                  color: "#4a4a4a",
+                  opacity: 0.85,
+                  whiteSpace: "pre-line",
+                }}
               >
                 {message}
               </p>
             ) : (
-              <div className="space-y-4">
-                {lines.map((line, i) => (
+              <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
+                {defaultLines.map((line, i) => (
                   <p
                     key={i}
-                    className={
-                      i === 1 // The names
-                        ? "text-[#382216] text-3xl font-normal py-2"
-                        : "text-[#382216]/70 text-[0.95rem] leading-relaxed"
-                    }
-                    style={{ 
-                      fontFamily: i === 1 ? "'Aref Ruqaa', serif" : "'Noto Naskh Arabic', serif" 
+                    style={{
+                      fontFamily:
+                        i === 1
+                          ? "'Aref Ruqaa', serif"
+                          : "'Noto Naskh Arabic', serif",
+                      fontSize: i === 1 ? "1.8rem" : "0.95rem",
+                      color: "#4a4a4a",
+                      opacity: i === 1 ? 1 : 0.7,
+                      lineHeight: i === 1 ? 1.55 : 1.8,
+                      /* CRITICAL Arabic descender fix for name line */
+                      paddingBottom: i === 1 ? 24 : 0,
+                      marginBottom: i === 1 ? 8 : 0,
                     }}
                   >
                     {line}
@@ -77,17 +184,32 @@ export default function IntroCopy({ groomName, brideName, message }: IntroCopyPr
           </ScrollReveal>
 
           {/* Bottom ornament */}
-          <div className="flex items-center justify-center gap-3 mt-7">
-            <div className="h-px w-10 bg-[#382216]/15" />
-            <span style={{ color: "#382216", fontSize: 12, opacity: 0.5 }}>✦</span>
-            <div className="h-px w-10 bg-[#382216]/15" />
-          </div>
-
-          {/* Abstract brush stroke or line art in background */}
-          <div className="absolute bottom-3 left-5 opacity-10 pointer-events-none">
-            <svg width="55" height="24" viewBox="0 0 80 28" fill="none">
-              <path d="M2 24 Q20 4 40 16 Q55 26 78 6" stroke="#382216" strokeWidth="6" strokeLinecap="round" />
-            </svg>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 12,
+              marginTop: 24,
+            }}
+          >
+            <div
+              style={{
+                height: 1,
+                width: 40,
+                backgroundColor: "#959595",
+                opacity: 0.25,
+              }}
+            />
+            <span style={{ color: "#4a4a4a", fontSize: 10, opacity: 0.4 }}>✦</span>
+            <div
+              style={{
+                height: 1,
+                width: 40,
+                backgroundColor: "#959595",
+                opacity: 0.25,
+              }}
+            />
           </div>
         </div>
       </ScrollReveal>

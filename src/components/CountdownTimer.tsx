@@ -47,56 +47,157 @@ export default function CountdownTimer({ targetDate }: CountdownTimerProps) {
   ];
 
   return (
-    <section id="countdown" className="bg-[#e8e4db] py-14 px-5" dir="rtl">
+    <section
+      id="countdown"
+      dir="rtl"
+      style={{
+        backgroundColor: "#f2efe7",
+        paddingTop: 60,
+        paddingBottom: 60,
+        paddingLeft: 20,
+        paddingRight: 20,
+      }}
+    >
       <ScrollReveal direction="fade" className="text-center">
         {/* Header */}
-        <p
-          className="text-[#382216]/50 tracking-[0.25em] text-[10px] uppercase mb-3"
-          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
-        >
-          العد التنازلي
-        </p>
-        <h2
-          className="text-[#382216] text-3xl leading-normal"
-          style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400, paddingBottom: "32px", marginBottom: "16px" }}
-        >
-          باقي على الفرح
-        </h2>
+        <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <p
+            style={{
+              color: "#4a4a4a",
+              fontSize: 11,
+              fontFamily: "'Cormorant Garamond', serif",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              opacity: 0.5,
+              marginBottom: 12,
+            }}
+          >
+            EVENT COUNTDOWN
+          </p>
 
-        {/* Timer blocks */}
-        <div className="flex items-end justify-center gap-3 flex-row-reverse">
+          {/*
+            Arabic heading with CRITICAL descender fix:
+            leading-none MUST never be used here.
+            Always: lineHeight ≥ 1.55, paddingBottom: 24, marginBottom: 16
+          */}
+          <h2
+            style={{
+              fontFamily: "'Aref Ruqaa', serif",
+              fontSize: "clamp(1.7rem, 7vw, 2.2rem)",
+              fontWeight: 400,
+              color: "#4a4a4a",
+              lineHeight: 1.55,
+              /* CRITICAL: prevents ح ش م descenders from clipping */
+              paddingBottom: 24,
+              marginBottom: 16,
+            }}
+          >
+            باقي على الفرح
+          </h2>
+
+          <div
+            style={{
+              width: 80,
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.3,
+              margin: "0 auto",
+            }}
+          />
+        </div>
+
+        {/* ── Timer boxes — Tilda-style light minimal boxes ── */}
+        <div
+          style={{
+            display: "flex",
+            alignItems: "flex-end",
+            justifyContent: "center",
+            gap: 8,
+            flexDirection: "row-reverse",
+            flexWrap: "wrap",
+          }}
+        >
           {units.map((unit, i) => (
-            <div key={unit.label} className="flex items-end gap-3 flex-row-reverse">
-              {/* Block */}
+            <div
+              key={unit.label}
+              style={{ display: "flex", alignItems: "flex-end", gap: 8, flexDirection: "row-reverse" }}
+            >
+              {/* Timer block — white card with soft border matching Tilda */}
               <div
-                className="flex flex-col items-center justify-center bg-white border border-[#382216]/10 rounded-xl shadow-sm"
-                style={{ width: 68, paddingTop: 16, paddingBottom: 14 }}
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  backgroundColor: "#ffffff",
+                  border: "1px solid rgba(149, 149, 149, 0.25)",
+                  borderRadius: 16,
+                  boxShadow: "0 4px 16px rgba(74, 74, 74, 0.06)",
+                  width: 70,
+                  paddingTop: 18,
+                  paddingBottom: 14,
+                }}
               >
+                {/* Number — Cormorant Garamond serif matches Tilda number style */}
                 <span
-                  className="text-[#382216] text-[2.4rem] leading-none tabular-nums"
-                  style={{ fontFamily: "'Playfair Display', serif", fontWeight: 400 }}
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "2.4rem",
+                    fontWeight: 400,
+                    color: "#4a4a4a",
+                    lineHeight: 1,
+                    fontVariantNumeric: "tabular-nums",
+                  }}
                 >
                   {mounted ? pad(unit.value) : "00"}
                 </span>
+
+                {/* Label in Arabic */}
                 <span
-                  className="text-[#382216]/60 text-[11px] mt-2"
-                  style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
+                  style={{
+                    fontFamily: "'Noto Naskh Arabic', serif",
+                    fontSize: 11,
+                    color: "#4a4a4a",
+                    opacity: 0.55,
+                    marginTop: 8,
+                  }}
                 >
                   {unit.label}
                 </span>
               </div>
-              {/* Separator */}
+
+              {/* Colon separator between units */}
               {i < units.length - 1 && (
-                <span className="text-[#382216]/40 text-3xl leading-none mb-5">:</span>
+                <span
+                  style={{
+                    fontFamily: "'Cormorant Garamond', serif",
+                    fontSize: "2rem",
+                    color: "#4a4a4a",
+                    opacity: 0.35,
+                    marginBottom: 20,
+                    lineHeight: 1,
+                  }}
+                >
+                  :
+                </span>
               )}
             </div>
           ))}
         </div>
 
-        {/* Dua */}
+        {/* Dua in Aref Ruqaa with proper descender fix */}
         <p
-          className="text-[#382216]/50 text-[14px] mt-10 leading-loose"
-          style={{ fontFamily: "'Aref Ruqaa', serif" }}
+          style={{
+            fontFamily: "'Aref Ruqaa', serif",
+            fontSize: "1.0rem",
+            color: "#4a4a4a",
+            opacity: 0.5,
+            marginTop: 40,
+            lineHeight: 1.7,
+            /* CRITICAL Arabic descender fix */
+            paddingBottom: 24,
+            marginBottom: 0,
+          }}
         >
           اللهم بارك لهما وبارك عليهما وجمع بينهما في خير
         </p>

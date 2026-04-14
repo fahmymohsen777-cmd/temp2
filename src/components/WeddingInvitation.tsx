@@ -17,16 +17,14 @@ interface WeddingInvitationProps {
 /**
  * WeddingInvitation
  *
- * The top‑level template component.  Feed it an `InvitationData` object from
- * your database / CMS and every section renders automatically.
+ * The top-level template component. Feed it an `InvitationData` object and
+ * every section renders automatically.
  *
- * Layout is constrained to a max of 430px (phone width) and centered on
- * larger screens so the invitation always feels like a mobile experience.
+ * Design: Inspired by template3.tilda.ws — warm parchment palette (#f2efe7),
+ * soft charcoal text (#4a4a4a), Cormorant Garamond for English/numbers,
+ * and Aref Ruqaa for all Arabic calligraphy.
  *
- * @example
- * ```tsx
- * <WeddingInvitation data={invitationFromDB} />
- * ```
+ * Layout: 430px max-width phone card, centered on desktop, strictly RTL.
  */
 export default function WeddingInvitation({ data }: WeddingInvitationProps) {
   const {
@@ -39,15 +37,34 @@ export default function WeddingInvitation({ data }: WeddingInvitationProps) {
     galleryImages,
     musicUrl,
     message,
+    schedule,
   } = data;
 
   return (
-    // Outer wrapper — light cream page background on desktop
-    <div className="min-h-screen bg-[#e8e4db] flex justify-center">
-      {/* Phone-width container — max 430px, centered */}
+    // Outer wrapper — light cream page background matching the Tilda palette
+    <div
+      style={{
+        minHeight: "100vh",
+        backgroundColor: "#f2efe7",
+        display: "flex",
+        justifyContent: "center",
+      }}
+    >
+      {/*
+        Phone-width container — max 430px, centered.
+        NOTE: Never use overflow-hidden here; use overflow-x-hidden
+        to allow vertical scroll-triggered animations to work.
+      */}
       <main
         id="invitation"
-        className="w-full max-w-[430px] bg-[#efece6] text-[#382216] antialiased selection:bg-[#382216]/10 shadow-[0_0_80px_rgba(0,0,0,0.1)]"
+        style={{
+          width: "100%",
+          maxWidth: 430,
+          backgroundColor: "#f2efe7",
+          color: "#4a4a4a",
+          overflowX: "hidden",
+          boxShadow: "0 0 80px rgba(74, 74, 74, 0.08)",
+        }}
       >
         {/* Optional ambient music */}
         {musicUrl && <AudioPlayer musicUrl={musicUrl} />}
@@ -57,7 +74,7 @@ export default function WeddingInvitation({ data }: WeddingInvitationProps) {
           groomName={groomName}
           brideName={brideName}
           date={date}
-          heroImage="/couple_portrait.png"
+          heroImage={galleryImages[0] ?? "/wedding_hero.png"}
         />
 
         <IntroCopy
@@ -69,7 +86,6 @@ export default function WeddingInvitation({ data }: WeddingInvitationProps) {
         <CountdownTimer targetDate={date} />
 
         <GallerySection images={galleryImages} />
-
 
 
         {locationUrl && (

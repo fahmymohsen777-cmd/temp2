@@ -12,61 +12,132 @@ export default function MapSection({ locationUrl, venueName, venueAddress }: Map
   if (!locationUrl) return null;
 
   return (
-    <section id="location" className="bg-[#e8e4db] py-14 px-5" dir="rtl">
+    <section
+      id="location"
+      dir="rtl"
+      style={{
+        backgroundColor: "#f0efec",
+        paddingTop: 60,
+        paddingBottom: 60,
+        paddingLeft: 20,
+        paddingRight: 20,
+      }}
+    >
       {/* Header */}
-      <ScrollReveal direction="up" className="text-center mb-10">
-        <p
-          className="text-[#382216]/50 tracking-[0.25em] text-[10px] uppercase mb-3"
-          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
-        >
-          مكان الحفل
-        </p>
-        <h2
-          className="text-[#382216] text-3xl leading-normal"
-          style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400, paddingBottom: "16px", marginBottom: "16px" }}
-        >
-          {venueName}
-        </h2>
-        <p
-          className="text-[#382216]/60 text-[13px] leading-relaxed mt-2"
-          style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
-        >
-          {venueAddress}
-        </p>
-        <div className="w-10 h-px bg-[#382216]/15 mx-auto mt-6 mb-4" />
+      <ScrollReveal direction="up" className="text-center">
+        <div style={{ textAlign: "center", marginBottom: 32 }}>
+          <p
+            style={{
+              color: "#4a4a4a",
+              fontSize: 11,
+              fontFamily: "'Cormorant Garamond', serif",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              opacity: 0.5,
+              marginBottom: 10,
+            }}
+          >
+            WHERE?
+          </p>
+
+          {/*
+            Arabic heading with CRITICAL descender fix.
+            lineHeight ≥ 1.55, paddingBottom: 24, marginBottom: 16.
+          */}
+          <h2
+            style={{
+              fontFamily: "'Aref Ruqaa', serif",
+              fontSize: "clamp(1.7rem, 7vw, 2.2rem)",
+              fontWeight: 400,
+              color: "#4a4a4a",
+              lineHeight: 1.55,
+              paddingBottom: 24,
+              marginBottom: 16,
+            }}
+          >
+            {venueName}
+          </h2>
+
+          <p
+            style={{
+              fontFamily: "'Noto Naskh Arabic', serif",
+              fontSize: 13,
+              color: "#4a4a4a",
+              opacity: 0.6,
+              lineHeight: 1.7,
+              marginBottom: 16,
+            }}
+          >
+            {venueAddress}
+          </p>
+
+          <div
+            style={{
+              width: 60,
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.3,
+              margin: "0 auto",
+            }}
+          />
+        </div>
       </ScrollReveal>
 
       {/* Map embed */}
       <ScrollReveal direction="up" delay={0.15}>
-        <div className="relative w-full overflow-hidden rounded-2xl border border-[#382216]/10 shadow-[0_12px_30px_rgba(56,34,22,0.1)]">
+        <div
+          style={{
+            position: "relative",
+            width: "100%",
+            borderRadius: 20,
+            overflow: "hidden",
+            border: "1.5px solid rgba(149, 149, 149, 0.25)",
+            boxShadow: "0 10px 30px rgba(74, 74, 74, 0.09)",
+          }}
+        >
           <iframe
             src={locationUrl}
             width="100%"
-            height="290"
+            height="300"
             style={{ border: 0, display: "block" }}
             allowFullScreen
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title={`خريطة ${venueName}`}
           />
-          {/* Subtle vignette on map edges */}
-          <div className="absolute top-0 left-0 right-0 h-5 bg-gradient-to-b from-[#e8e4db] to-transparent pointer-events-none" />
-          <div className="absolute bottom-0 left-0 right-0 h-5 bg-gradient-to-t from-[#e8e4db] to-transparent pointer-events-none" />
         </div>
       </ScrollReveal>
 
-      {/* Directions button */}
+      {/* Directions button — matches Tilda's simple action button style */}
       <ScrollReveal direction="up" delay={0.25}>
-        <div className="flex justify-center mt-7">
+        <div style={{ display: "flex", justifyContent: "center", marginTop: 24 }}>
           <a
             href={`https://maps.google.com/maps?q=${encodeURIComponent(venueAddress)}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2 px-7 py-2.5 bg-[#382216] rounded-full text-[#efece6] text-[13px] shadow-lg hover:bg-[#4a2e1d] hover:shadow-xl transition-all duration-300"
-            style={{ fontFamily: "'Noto Naskh Arabic', serif" }}
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 8,
+              paddingTop: 11,
+              paddingBottom: 11,
+              paddingLeft: 28,
+              paddingRight: 28,
+              backgroundColor: "#4a4a4a",
+              color: "#f2efe7",
+              borderRadius: 999,
+              fontFamily: "'Noto Naskh Arabic', serif",
+              fontSize: 13,
+              textDecoration: "none",
+              boxShadow: "0 4px 14px rgba(74, 74, 74, 0.2)",
+              transition: "all 0.25s ease",
+            }}
           >
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none">
-              <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z" fill="currentColor"/>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5S10.62 6.5 12 6.5s2.5 1.12 2.5 2.5S13.38 11.5 12 11.5z"
+                fill="currentColor"
+              />
             </svg>
             اعرض على الخريطة
           </a>

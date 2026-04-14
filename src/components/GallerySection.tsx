@@ -8,67 +8,135 @@ interface GallerySectionProps {
 }
 
 export default function GallerySection({ images }: GallerySectionProps) {
+  // Skip the first image (used as hero), use the rest for gallery
   const galleryImgs = images.slice(1, 7);
 
   return (
-    <section id="gallery" className="bg-[#efece6] py-14 px-5" dir="rtl">
+    <section
+      id="gallery"
+      dir="rtl"
+      style={{
+        backgroundColor: "#f0efec",
+        paddingTop: 60,
+        paddingBottom: 60,
+        paddingLeft: 20,
+        paddingRight: 20,
+      }}
+    >
       {/* Header */}
-      <ScrollReveal direction="fade" className="text-center mb-12">
-        <p
-          className="text-[#382216]/50 tracking-[0.25em] text-[10px] uppercase mb-3"
-          style={{ fontFamily: "'Playfair Display', serif", fontStyle: "italic" }}
-        >
-          ذكرياتنا
-        </p>
-        <h2
-          className="text-[#382216] text-3xl leading-normal"
-          style={{ fontFamily: "'Aref Ruqaa', serif", fontWeight: 400, paddingBottom: "16px", marginBottom: "16px" }}
-        >
-          لحظات من قلب الحكاية
-        </h2>
-        <div className="w-10 h-px bg-[#382216]/15 mx-auto" />
+      <ScrollReveal direction="fade" className="text-center">
+        <div style={{ textAlign: "center", marginBottom: 36 }}>
+          <p
+            style={{
+              color: "#4a4a4a",
+              fontSize: 11,
+              fontFamily: "'Cormorant Garamond', serif",
+              letterSpacing: "0.22em",
+              textTransform: "uppercase",
+              opacity: 0.5,
+              marginBottom: 10,
+            }}
+          >
+            OUR MEMORIES
+          </p>
+
+          {/*
+            Arabic calligraphy heading — CRITICAL descender fix applied.
+            lineHeight ≥ 1.55, paddingBottom: 24, marginBottom: 16.
+            NEVER use leading-none here.
+          */}
+          <h2
+            style={{
+              fontFamily: "'Aref Ruqaa', serif",
+              fontSize: "clamp(1.7rem, 7vw, 2.2rem)",
+              fontWeight: 400,
+              color: "#4a4a4a",
+              lineHeight: 1.55,
+              paddingBottom: 24,
+              marginBottom: 16,
+            }}
+          >
+            لحظات من قلب الحكاية
+          </h2>
+
+          <div
+            style={{
+              width: 60,
+              height: 1,
+              backgroundColor: "#959595",
+              opacity: 0.3,
+              margin: "0 auto",
+            }}
+          />
+        </div>
       </ScrollReveal>
 
-      {/* Grid */}
-      <div className="grid grid-cols-2 gap-2.5">
-        {/* First image — full width */}
+      {/* ── Gallery Grid ── */}
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr",
+          gap: 10,
+        }}
+      >
+        {/* First image — full width (arch-shaped, tall) */}
         {galleryImgs[0] && (
           <ScrollReveal direction="up" delay={0} className="col-span-2">
             <div
-              className="relative w-full overflow-hidden rounded-xl border border-[#382216]/10 shadow-sm group"
-              style={{ aspectRatio: "16/9" }}
+              style={{
+                position: "relative",
+                width: "100%",
+                aspectRatio: "4/3",
+                /* Arch-shape exactly as in Tilda: top rounded, bottom straight */
+                borderRadius: "120px 120px 12px 12px",
+                overflow: "hidden",
+                border: "1.5px solid rgba(149, 149, 149, 0.2)",
+                boxShadow: "0 8px 24px rgba(74, 74, 74, 0.08)",
+              }}
             >
               <Image
                 src={galleryImgs[0]}
                 alt="لحظة من ألبوم الذكريات"
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="420px"
+                style={{
+                  objectFit: "cover",
+                  transition: "transform 0.7s ease",
+                }}
+                className="group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-[#382216]/0 group-hover:bg-[#382216]/5 transition-colors duration-500" />
             </div>
           </ScrollReveal>
         )}
 
-        {/* Rest — 2 per row */}
+        {/* Remaining — 2 per row, arch-shaped (pill-top) */}
         {galleryImgs.slice(1).map((src, idx) => (
           <ScrollReveal
             key={src}
             direction={idx % 2 === 0 ? "right" : "left"}
-            delay={0.07 * idx}
+            delay={0.08 * idx}
           >
             <div
-              className="relative overflow-hidden rounded-xl border border-[#382216]/10 shadow-sm group"
-              style={{ aspectRatio: "3/4" }}
+              style={{
+                position: "relative",
+                aspectRatio: "3/4",
+                /* Arch photo shape — pure top pill exactly like Tilda sample image */
+                borderRadius: "999px 999px 12px 12px",
+                overflow: "hidden",
+                border: "1.5px solid rgba(149, 149, 149, 0.2)",
+                boxShadow: "0 6px 18px rgba(74, 74, 74, 0.07)",
+              }}
             >
               <Image
                 src={src}
                 alt={`ذكرى ${idx + 2}`}
                 fill
-                className="object-cover transition-transform duration-700 group-hover:scale-105"
                 sizes="200px"
+                style={{
+                  objectFit: "cover",
+                  transition: "transform 0.7s ease",
+                }}
               />
-              <div className="absolute inset-0 bg-[#382216]/0 group-hover:bg-[#382216]/5 transition-colors duration-500" />
             </div>
           </ScrollReveal>
         ))}

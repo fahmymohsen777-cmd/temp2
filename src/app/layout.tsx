@@ -21,13 +21,12 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         {/*
-          Great Vibes — for English script if needed
-          Aref Ruqaa — Arabic script handwriting style matches video
-          Noto Naskh Arabic — Arabic serif matches video's serif
-          Playfair Display — English serif
+          Cormorant Garamond — elegant serif for English/numbers (matches Tilda's Template3 font feel)
+          Aref Ruqaa — Arabic calligraphy for all Arabic headings
+          Noto Naskh Arabic — Arabic body text
         */}
         <link
-          href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Great+Vibes&family=Noto+Naskh+Arabic:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Aref+Ruqaa:wght@400;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Noto+Naskh+Arabic:wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
       </head>
